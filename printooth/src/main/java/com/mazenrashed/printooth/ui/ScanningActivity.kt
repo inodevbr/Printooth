@@ -44,14 +44,14 @@ class ScanningActivity : AppCompatActivity() {
         bluetooth.setDiscoveryCallback(object : DiscoveryCallback {
             override fun onDiscoveryStarted() {
                 refreshLayout.isRefreshing = true
-                toolbar.title = "Scanning.."
+                toolbar.title = getString(R.string.scanning_title)
                 devices.clear()
                 devices.addAll(bluetooth.pairedDevices)
                 adapter.notifyDataSetChanged()
             }
 
             override fun onDiscoveryFinished() {
-                toolbar.title = if (devices.isNotEmpty()) "Select a Printer" else "No devices"
+                toolbar.title = if (devices.isNotEmpty()) getString(R.string.scanning_select_printer) else getString(R.string.scanning_no_printer)
                 refreshLayout.isRefreshing = false
             }
 
@@ -64,14 +64,14 @@ class ScanningActivity : AppCompatActivity() {
 
             override fun onDevicePaired(device: BluetoothDevice) {
                 Printooth.setPrinter(device.name, device.address)
-                Toast.makeText(this@ScanningActivity, "Device Paired", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ScanningActivity, R.string.scanning_device_paired, Toast.LENGTH_SHORT).show()
                 adapter.notifyDataSetChanged()
                 setResult(Activity.RESULT_OK)
                 this@ScanningActivity.finish()
             }
 
             override fun onDeviceUnpaired(device: BluetoothDevice) {
-                Toast.makeText(this@ScanningActivity, "Device unpaired", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ScanningActivity, R.string.scanning_device_unpaired, Toast.LENGTH_SHORT).show()
                 val pairedPrinter = Printooth.getPairedPrinter()
                 if (pairedPrinter != null && pairedPrinter.address == device.address)
                     Printooth.removeCurrentPrinter()
@@ -81,7 +81,7 @@ class ScanningActivity : AppCompatActivity() {
             }
 
             override fun onError(message: String) {
-                Toast.makeText(this@ScanningActivity, "Error while pairing", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ScanningActivity, R.string.scanning_pairing_error, Toast.LENGTH_SHORT).show()
                 adapter.notifyDataSetChanged()
             }
         })
@@ -139,8 +139,8 @@ class ScanningActivity : AppCompatActivity() {
                         findViewById<TextView>(R.id.name).text = if (devices[position].name.isNullOrEmpty()) devices[position].address else devices[position].name
                         findViewById<TextView>(R.id.pairStatus).visibility = if (devices[position].bondState != BluetoothDevice.BOND_NONE) View.VISIBLE else View.INVISIBLE
                         findViewById<TextView>(R.id.pairStatus).text = when (devices[position].bondState) {
-                            BluetoothDevice.BOND_BONDED -> "Paired"
-                            BluetoothDevice.BOND_BONDING -> "Pairing.."
+                            BluetoothDevice.BOND_BONDED -> getString(R.string.scanning_paired)
+                            BluetoothDevice.BOND_BONDING -> getString(R.string.scanning_paired)
                             else -> ""
                         }
                         findViewById<ImageView>(R.id.pairedPrinter).visibility = if (Printooth.getPairedPrinter()?.address == devices[position].address) View.VISIBLE else View.GONE
