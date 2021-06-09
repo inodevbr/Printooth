@@ -83,14 +83,16 @@ public class Bluetooth {
     };
 
     public void onStop() {
-        context.unregisterReceiver(bluetoothReceiver);
+        try {
+            context.unregisterReceiver(bluetoothReceiver);
+        } catch (IllegalArgumentException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void enable() {
-        if (bluetoothAdapter != null) {
-            if (!bluetoothAdapter.isEnabled()) {
-                bluetoothAdapter.enable();
-            }
+        if (bluetoothAdapter != null && !bluetoothAdapter.isEnabled()) {
+            bluetoothAdapter.enable();
         }
     }
 
@@ -182,7 +184,6 @@ public class Bluetooth {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public List<BluetoothDevice> getPairedDevices() {
