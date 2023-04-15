@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">UniversalBluethootPrinting</string>
+    <string name="scanning_title">Procurando …</string>
+    <string name="scanning_select_printer">Selecione uma impressora</string>
+    <string name="scanning_no_printer">Nenhuma impressora</string>
+    <string name="scanning_device_paired">Impressora pareada!</string>
+    <string name="scanning_device_unpaired">Impressora despareada!</string>
+    <string name="scanning_pairing_error">Erro ao parear</string>
+    <string name="scanning_paired">Pareado</string>
+    <string name="scanning_pairing">Pareando …</string>
+</resources>

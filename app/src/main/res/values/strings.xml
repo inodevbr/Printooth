@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Printooth example</string>
+    <string name="printer_connecting">Connecting with printer</string>
 </resources>

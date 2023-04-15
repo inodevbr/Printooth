@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">UniversalBluethootPrinting</string>
+    <string name="scanning_title">Scanning..</string>
+    <string name="scanning_select_printer">Select a Printer</string>
+    <string name="scanning_no_printer">No devices</string>
+    <string name="scanning_device_paired">Device Paired!</string>
+    <string name="scanning_device_unpaired">Device unpaired</string>
+    <string name="scanning_pairing_error">Error while pairing</string>
+    <string name="scanning_paired">Paired</string>
+    <string name="scanning_pairing">Pairing..</string>
 </resources>

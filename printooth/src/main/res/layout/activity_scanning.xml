@@ -10,7 +10,7 @@
         android:layout_height="56dp"
         android:background="?colorPrimary"
         android:theme="?actionBarPopupTheme"
-        app:title="Scanning.." />
+        app:title="@string/scanning_title" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout"
